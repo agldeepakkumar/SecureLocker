@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Secure Locker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="camera_permission">Camera permission required. Please allow in App Settings for additional functionality.</string>
+    <string name="gallery_permission">Read External Storage permission required. Please allow in App Settings for additional functionality.</string>
+
+    <!-- Passcode Screen -->
+    <string name="activity_dialog_title">Forgot you Passcode?</string>
+    <string name="activity_dialog_accept">OK</string>
+    <string name="activity_dialog_decline">CANCEL</string>
+    <string name="activity_dialog_content">Tap \'OK\' to log out, when you log back in you\'ll be able to create a new Passcode.\n\nIf you remember your Passcode, tap \'Cancel\' to go back.</string>
+
+    <!-- Gallery Screen -->
+    <string name="gallery_title">Gallery</string>
+
+    <!--Main Screen -->
+    <string name="audio_video">Audio/Video</string>
+    <string name="document">Document</string>
+    <string name="notes">Notes</string>
+    <string name="settings">Settings</string>
+
+    <!-- File Chooser -->
+    <string name="camera">Take Photo</string>
+    <string name="gallery">Gallery</string>
+
+    <!-- Settings Screen -->
+    <string name="update_password">Update Password</string>
+    <string name="faq">FAQ</string>
+    <string name="feedback">Feedback</string>
+    <string name="about_us">About Us</string>
+    <string name="terms_condition">Terms &amp; Condition</string>
+    <string name="share">Share</string>
+</resources>

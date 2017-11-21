@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="more_options">
+        <item>Select</item>
+        <item>Select All</item>
+        <item>Encrypt</item>
+        <item>Delete</item>
+    </string-array>
+</resources>
