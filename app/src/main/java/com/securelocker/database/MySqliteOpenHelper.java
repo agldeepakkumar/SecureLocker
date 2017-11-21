@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySqliteOpenHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "secure.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     public static final String COLUMN_ID = "_id";
     public static final String PATH = "path";
     public static final String TABLE_GALLERY = "table_gallery";
-    public static final String CREATE_IMAGE_TABLE_QUERY = "CREATE TABLE "+TABLE_GALLERY + " ( "+COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "+PATH + " TEXT );";
+    public static final String  ENCRYPTION_VALUE = "encryption_value";
+    public static final String CREATE_IMAGE_TABLE_QUERY = "CREATE TABLE "+TABLE_GALLERY + " ( "+COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "+PATH + " TEXT ,"+ENCRYPTION_VALUE + " INTEGER );";
 
     public MySqliteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

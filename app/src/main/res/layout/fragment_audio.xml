@@ -21,6 +21,6 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="15dp"
         app:fabSize="normal"
-        android:backgroundTint="#6AC259"
+        app:backgroundTint="#6AC259"
         android:src="@drawable/ic_add" />
 </android.support.design.widget.CoordinatorLayout>

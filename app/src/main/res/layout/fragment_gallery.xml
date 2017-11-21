@@ -1,27 +1,50 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parentView"
     tools:context=".fragment.GalleryFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvGallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:visibility="gone">
 
     </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="15dp"
-        android:id="@+id/fabAdd"
-        app:fabSize="normal"
-        app:backgroundTint="#6AC259"
         android:src="@drawable/ic_add"
-        />
+        android:visibility="gone"
+        app:backgroundTint="#6AC259"
+        app:fabSize="normal" />
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabsSlide"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        app:pstsActivateTextColor="@color/white"
+        app:pstsDeactivateTextColor="@color/white"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="@color/tabs_indicator"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsShouldExpand="true"
+        app:pstsTabBackground="@drawable/secure_tabs"
+        app:pstsTabPaddingLeftRight="14dip"
+        app:pstsTabSwitch="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerGallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.design.widget.CoordinatorLayout>
