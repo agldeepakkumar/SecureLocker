@@ -23,6 +23,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -53,6 +55,7 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
     public final int GALLERY_PERMISSION_CODE = 0x3, CAMERA_PERMISSION_CODE = 0x4;
     private ArrayList<String> listImagePath;
     GalleryFragmentAdapter gallaryFragmentAdapter;
+    private RecyclerView rvGalleryInsecure;
 
     public GalleryInsecureFragment() {
         // Required empty public constructor
@@ -64,7 +67,8 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
         super.onActivityCreated(savedInstanceState);
         activity = (MainActivity) getActivity();
         activity.getLoaderManager().initLoader(0, null, this);
-        gallaryFragmentAdapter = new GalleryFragmentAdapter(activity, listImagePath);
+//        gallaryFragmentAdapter = new GalleryFragmentAdapter(activity, listImagePath);
+        rvGalleryInsecure.setAdapter(gallaryFragmentAdapter);
     }
 
     @Override
@@ -90,6 +94,9 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
     private void initViews() {
         fab = rootView.findViewById(R.id.fabAdd);
         parentView = rootView.findViewById(R.id.parentView);
+        rvGalleryInsecure = rootView.findViewById(R.id.rvGalleryInsecure);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        rvGalleryInsecure.setLayoutManager(gridLayoutManager);
         fab.setOnClickListener(this);
     }
 
@@ -133,7 +140,7 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
             }
         }
 
-        if(listImagePath.size() > 0 ) gallaryFragmentAdapter.updateList(listImagePath);
+//        if(listImagePath.size() > 0 ) gallaryFragmentAdapter.updateList(listImagePath);
     }
 
     @Override

@@ -24,7 +24,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
     compile project(':library')
     compile project(':lib')
     compile 'com.android.support:multidex:1.0.1'
@@ -35,5 +34,7 @@ dependencies {
     compile 'com.android.support:design:26.0.2'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jsibbold:zoomage:1.1.0'
     compile 'uk.me.lewisdeane.ldialogs:ldialogs:1.2.0@aar'
+    testCompile 'junit:junit:4.12'
 }

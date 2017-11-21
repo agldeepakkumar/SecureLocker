@@ -24,28 +24,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <TextView
                     android:id="@+id/title_textView"
+                    fontPath="fonts/OpenSans-SemiBold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/OpenSans-SemiBold.ttf" />
+                    tools:ignore="MissingPrefix" />
 
                 <ImageButton
                     android:id="@+id/more_options"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_dot"
+                    android:layout_gravity="center|end"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_gravity="center|end"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_dot" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -57,7 +57,7 @@
                 android:id="@+id/frame_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="?android:attr/actionBarSize"/>
+                android:paddingBottom="?android:attr/actionBarSize" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,18 +69,18 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:background="@color/white"
+                    android:orientation="horizontal"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:weightSum="6"
-                    android:orientation="horizontal">
+                    android:weightSum="6">
 
                     <RelativeLayout
                         android:id="@+id/llAudioVideo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
+                        android:layout_weight="1.125"
                         android:paddingBottom="5dp"
-                        android:layout_weight="1.125">
+                        android:paddingTop="5dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -97,15 +97,15 @@
 
                             <TextView
                                 android:id="@+id/textMenuName"
+                                fontPath="fonts/OpenSans-SemiBold.ttf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@drawable/slidingtab_title_color"
-                                android:text="@string/audio_video"
-                                android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
+                                android:paddingTop="2dp"
+                                android:text="@string/audio_video"
+                                android:textColor="@drawable/slidingtab_title_color"
                                 android:textSize="9sp"
-                                tools:ignore="MissingPrefix"
-                                fontPath="fonts/OpenSans-SemiBold.ttf" />
+                                tools:ignore="MissingPrefix" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -113,9 +113,9 @@
                         android:id="@+id/llDocument"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
+                        android:layout_weight="1.125"
                         android:paddingBottom="5dp"
-                        android:layout_weight="1.125">
+                        android:paddingTop="5dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -131,31 +131,30 @@
                                 android:src="@drawable/ic_document" />
 
                             <TextView
+                                fontPath="fonts/OpenSans-SemiBold.ttf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@drawable/slidingtab_title_color"
-                                android:text="@string/document"
-                                android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
+                                android:paddingTop="2dp"
+                                android:text="@string/document"
+                                android:textColor="@drawable/slidingtab_title_color"
                                 android:textSize="9sp"
-                                tools:ignore="MissingPrefix"
-                                fontPath="fonts/OpenSans-SemiBold.ttf"/>
+                                tools:ignore="MissingPrefix" />
                         </LinearLayout>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5">
-                    </RelativeLayout>
+                        android:layout_weight="1.5"></RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/llNotes"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
+                        android:layout_weight="1.125"
                         android:paddingBottom="5dp"
-                        android:layout_weight="1.125">
+                        android:paddingTop="5dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -171,15 +170,15 @@
                                 android:src="@drawable/ic_notes" />
 
                             <TextView
+                                fontPath="fonts/OpenSans-SemiBold.ttf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@drawable/slidingtab_title_color"
-                                android:text="@string/notes"
-                                android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
+                                android:paddingTop="2dp"
+                                android:text="@string/notes"
+                                android:textColor="@drawable/slidingtab_title_color"
                                 android:textSize="9sp"
-                                tools:ignore="MissingPrefix"
-                                fontPath="fonts/OpenSans-SemiBold.ttf"/>
+                                tools:ignore="MissingPrefix" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -187,9 +186,9 @@
                         android:id="@+id/llSettings"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
+                        android:layout_weight="1.125"
                         android:paddingBottom="5dp"
-                        android:layout_weight="1.125">
+                        android:paddingTop="5dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -205,15 +204,15 @@
                                 android:src="@drawable/ic_settings" />
 
                             <TextView
+                                fontPath="fonts/OpenSans-SemiBold.ttf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@drawable/slidingtab_title_color"
-                                android:text="@string/settings"
-                                android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
+                                android:paddingTop="2dp"
+                                android:text="@string/settings"
+                                android:textColor="@drawable/slidingtab_title_color"
                                 android:textSize="9sp"
-                                tools:ignore="MissingPrefix"
-                                fontPath="fonts/OpenSans-SemiBold.ttf"/>
+                                tools:ignore="MissingPrefix" />
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
@@ -222,22 +221,22 @@
                     android:id="@+id/llGallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_gallery"
-                    android:background="@android:color/transparent"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_gallery" />
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
-        android:layout_height="match_parent"
         android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
         app:itemBackground="@android:color/transparent"
-        app:menu="@menu/activity_main_drawer"
-        app:headerLayout="@layout/nav_header_main" />
+        app:menu="@menu/activity_main_drawer" />
 </android.support.v4.widget.DrawerLayout>

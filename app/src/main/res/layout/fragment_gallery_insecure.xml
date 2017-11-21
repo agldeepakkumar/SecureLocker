@@ -6,6 +6,14 @@
     android:id="@+id/parentView"
     tools:context="com.securelocker.fragment.GalleryInsecureFragment">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvGalleryInsecure"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+
+    </android.support.v7.widget.RecyclerView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
