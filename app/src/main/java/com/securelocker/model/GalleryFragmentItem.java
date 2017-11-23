@@ -1,7 +1,9 @@
 package com.securelocker.model;
 
 
-public class GalleryFragmentItem {
+import java.io.Serializable;
+
+public class GalleryFragmentItem implements Serializable{
 
     private String id,imagePath;
     private boolean isSelected;

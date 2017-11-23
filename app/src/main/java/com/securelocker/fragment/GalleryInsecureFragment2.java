@@ -20,8 +20,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
@@ -29,6 +27,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.securelocker.R;
-import com.securelocker.adapter.GalleryFragmentAdapter;
+import com.securelocker.adapter.GalleryInsecureFragmentAdapter;
 import com.securelocker.database.MySqliteOpenHelper;
 import com.securelocker.model.GalleryFragmentItem;
 import com.securelocker.provider.GalleryImageDataProvider;
@@ -52,7 +51,7 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
     private Uri srcImageUri = null;
     View parentView;
     private ArrayList<GalleryFragmentItem> listImagePath;
-    GalleryFragmentAdapter gallaryFragmentAdapter;
+    GalleryInsecureFragmentAdapter gallaryFragmentAdapter;
     public final int REQUEST_CAMERA = 0x1, CHOOSE_IMAGE_REQUEST = 0x2;
     public final int GALLERY_PERMISSION_CODE = 0x3, CAMERA_PERMISSION_CODE = 0x4;
     public static boolean isSelectOptionClicked;
@@ -60,7 +59,7 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().getLoaderManager().initLoader(0, null, this);
+        getActivity().getLoaderManager().initLoader(1, null, this);
     }
 
     @Nullable
@@ -76,16 +75,16 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
         fabAdd = (FloatingActionButton) view.findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(this);
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey("imagesList")) {
+        if (savedInstanceState == null || !savedInstanceState.containsKey("imagesList")) {
             listImagePath = new ArrayList<>();
         } else {
             Bundle bundle = savedInstanceState.getBundle("data");
-            if(bundle != null ){
+            if (bundle != null) {
                 listImagePath = (ArrayList<GalleryFragmentItem>) bundle.getSerializable("imageList");
             }
         }
 
-        gallaryFragmentAdapter = new GalleryFragmentAdapter(getActivity(), listImagePath);
+        gallaryFragmentAdapter = new GalleryInsecureFragmentAdapter(getActivity(), listImagePath);
         rvGallery.setAdapter(gallaryFragmentAdapter);
         setHasOptionsMenu(true);
         return view;
@@ -95,8 +94,15 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("imageList",listImagePath);
-        outState.putBundle("data",bundle);
+        bundle.putSerializable("imageList", listImagePath);
+        outState.putBundle("data", bundle);
+    }
+
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.menuEncrypt).setTitle("Encrypt");
     }
 
     @Override
@@ -174,15 +180,15 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     dismiss();
-                    if(Utils.canAccessCamera(getActivity())) {
+                    if (Utils.canAccessCamera(getActivity())) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
                             try {
-                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                                     srcImageUri = FileProvider.getUriForFile(getActivity(), "com.securelocker.provider",
                                             Utils.getOutputMediaFile());
                                 } else {
-                                    srcImageUri= Uri.fromFile(Utils.getOutputMediaFile());
+                                    srcImageUri = Uri.fromFile(Utils.getOutputMediaFile());
                                 }
                                 intent.putExtra(MediaStore.EXTRA_OUTPUT, srcImageUri);
                                 startActivityForResult(intent, REQUEST_CAMERA);
@@ -201,13 +207,13 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     dismiss();
-                    if(Utils.canAccessGallery(getActivity())) {
+                    if (Utils.canAccessGallery(getActivity())) {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
                         startActivityForResult(Intent.createChooser(intent, "Select Picture"), CHOOSE_IMAGE_REQUEST);
                     } else {
-                        requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, GALLERY_PERMISSION_CODE);
                     }
                 }
@@ -230,15 +236,15 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the task you need to do.
-                    if(Utils.canAccessCamera(getActivity())) {
+                    if (Utils.canAccessCamera(getActivity())) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
                             try {
-                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                                     srcImageUri = FileProvider.getUriForFile(getActivity(), "com.securelocker.provider",
                                             Utils.getOutputMediaFile());
                                 } else {
-                                    srcImageUri= Uri.fromFile(Utils.getOutputMediaFile());
+                                    srcImageUri = Uri.fromFile(Utils.getOutputMediaFile());
                                 }
                                 intent.putExtra(MediaStore.EXTRA_OUTPUT, srcImageUri);
                                 startActivityForResult(intent, REQUEST_CAMERA);
@@ -268,13 +274,13 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
             case GALLERY_PERMISSION_CODE: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(Utils.canAccessGallery(getActivity())) {
+                    if (Utils.canAccessGallery(getActivity())) {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
                         startActivityForResult(Intent.createChooser(intent, "Select Picture"), CHOOSE_IMAGE_REQUEST);
                     } else {
-                        requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, GALLERY_PERMISSION_CODE);
                     }
                 } else {
@@ -347,8 +353,8 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK) {
-            if(requestCode == CHOOSE_IMAGE_REQUEST && data != null && data.getData() != null) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CHOOSE_IMAGE_REQUEST && data != null && data.getData() != null) {
                 onSelectFromGalleryResult(data);
             } else if (requestCode == REQUEST_CAMERA) {
                 if (srcImageUri != null) {
@@ -376,10 +382,11 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
     private void onSelectFromGalleryResult(Intent data) {
         try {
             String selectedImagePath = Utils.getPath(getActivity(), data.getData());
-            Log.d("GALLERY",selectedImagePath);
+            Log.d("GALLERY", selectedImagePath);
             ContentValues cv = new ContentValues();
-            cv.put(MySqliteOpenHelper.PATH,selectedImagePath);
-            getActivity().getContentResolver().insert(GalleryImageDataProvider.CONTENT_URI,cv);
+            cv.put(MySqliteOpenHelper.PATH, selectedImagePath);
+            cv.put(MySqliteOpenHelper.ENCRYPTION_VALUE, 0);
+            getActivity().getContentResolver().insert(GalleryImageDataProvider.CONTENT_URI, cv);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -387,17 +394,19 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        String[] projection = {MySqliteOpenHelper.COLUMN_ID, MySqliteOpenHelper.PATH,MySqliteOpenHelper.ENCRYPTION_VALUE};
+        String selection = MySqliteOpenHelper.ENCRYPTION_VALUE + " = ? ";
+        String[] selectionArgs = {"0"};
+        String[] projection = {MySqliteOpenHelper.COLUMN_ID, MySqliteOpenHelper.PATH, MySqliteOpenHelper.ENCRYPTION_VALUE};
         CursorLoader cursorLoader = new CursorLoader(getActivity(),
-                GalleryImageDataProvider.CONTENT_URI, projection, null, null, null);
+                GalleryImageDataProvider.CONTENT_URI, projection, selection, selectionArgs, null);
         return cursorLoader;
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        if (cursor != null && cursor.getCount() > 0) {
-            Log.e("Cursor Length", ""+cursor.getCount());
-            if(listImagePath != null) {
+        if (cursor != null ) {
+            Log.e("Cursor Length", "" + cursor.getCount());
+            if (listImagePath != null || cursor.getCount() == 0) {
                 listImagePath.clear();
             } else {
                 listImagePath = new ArrayList<>();
@@ -413,43 +422,11 @@ public class GalleryInsecureFragment2 extends Fragment implements View.OnClickLi
             }
         }
 
-        if(listImagePath.size() > 0 ) gallaryFragmentAdapter.updateList(listImagePath);
+         gallaryFragmentAdapter.updateList(listImagePath);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    class MyPagerAdapter extends FragmentPagerAdapter {
-        Fragment fragment;
-        final int PAGE_COUNT = 2;
-        private String tabTitles[] = new String[] { "Secure", "Insecure" };
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    fragment = new GallerySecureFragment();
-                    break;
-                case 1:
-                    fragment = new GalleryInsecureFragment();
-                    break;
-            }
-            return fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return PAGE_COUNT;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabTitles[position];
-        }
-    }
 }

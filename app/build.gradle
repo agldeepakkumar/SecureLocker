@@ -36,5 +36,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jsibbold:zoomage:1.1.0'
     compile 'uk.me.lewisdeane.ldialogs:ldialogs:1.2.0@aar'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

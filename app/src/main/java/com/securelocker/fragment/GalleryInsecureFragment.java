@@ -34,7 +34,7 @@ import android.widget.TextView;
 
 import com.securelocker.R;
 import com.securelocker.activities.MainActivity;
-import com.securelocker.adapter.GalleryFragmentAdapter;
+import com.securelocker.adapter.GalleryInsecureFragmentAdapter;
 import com.securelocker.database.MySqliteOpenHelper;
 import com.securelocker.provider.GalleryImageDataProvider;
 import com.securelocker.util.Utils;
@@ -54,7 +54,7 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
     public final int REQUEST_CAMERA = 0x1, CHOOSE_IMAGE_REQUEST = 0x2;
     public final int GALLERY_PERMISSION_CODE = 0x3, CAMERA_PERMISSION_CODE = 0x4;
     private ArrayList<String> listImagePath;
-    GalleryFragmentAdapter gallaryFragmentAdapter;
+    GalleryInsecureFragmentAdapter gallaryFragmentAdapter;
     private RecyclerView rvGalleryInsecure;
 
     public GalleryInsecureFragment() {
@@ -67,7 +67,7 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
         super.onActivityCreated(savedInstanceState);
         activity = (MainActivity) getActivity();
         activity.getLoaderManager().initLoader(0, null, this);
-//        gallaryFragmentAdapter = new GalleryFragmentAdapter(activity, listImagePath);
+//        gallaryFragmentAdapter = new GalleryInsecureFragmentAdapter(activity, listImagePath);
         rvGalleryInsecure.setAdapter(gallaryFragmentAdapter);
     }
 
@@ -125,9 +125,9 @@ public class GalleryInsecureFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        if (cursor != null && cursor.getCount() > 0) {
+        if (cursor != null ) {
             Log.e("Cursor Length", ""+cursor.getCount());
-            if(listImagePath != null) {
+            if(listImagePath != null || cursor.getCount() == 0) {
                 listImagePath.clear();
             } else {
                 listImagePath = new ArrayList<>();
