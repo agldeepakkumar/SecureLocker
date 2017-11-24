@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.securelocker.R;
+import com.securelocker.activities.PasscodeActivity;
 import com.securelocker.activities.ViewPictureActivity;
 import com.securelocker.model.GalleryFragmentItem;
 import com.squareup.picasso.Picasso;
@@ -21,17 +22,16 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
 
-import static com.securelocker.fragment.GalleryInsecureFragment2.isSelectOptionClicked;
+import static com.securelocker.fragment.GallerySecureFragment.isSelectOptionClicked;
 
 
-public class GalleryFragmentAdapter extends RecyclerView.Adapter<GalleryFragmentAdapter.MyViewHolder> {
-
+public class GallerySecureFragmentAdapter extends RecyclerView.Adapter<GallerySecureFragmentAdapter.MyViewHolder> {
 
     private boolean isLongPressed;
     private ArrayList<GalleryFragmentItem> imagePathList;
     private Context context;
 
-    public GalleryFragmentAdapter(Context context, ArrayList<GalleryFragmentItem> imagePathList) {
+    public GallerySecureFragmentAdapter(Context context, ArrayList<GalleryFragmentItem> imagePathList) {
         this.imagePathList = imagePathList;
         this.context = context;
     }
@@ -135,9 +135,9 @@ public class GalleryFragmentAdapter extends RecyclerView.Adapter<GalleryFragment
                 notifyDataSetChanged();
             } else {
                 if (item.getEncryptionValue() == 1) {
-                   /* Intent intent = new Intent(context, PasscodeActivity.class);
+                    Intent intent = new Intent(context, PasscodeActivity.class);
                     intent.putExtra("imagePath", item.getImagePath());
-                    context.startActivity(intent);*/
+                    context.startActivity(intent);
                     Toast.makeText(context, "This image is encrypted.", Toast.LENGTH_SHORT).show();
                 } else openFullImageScreen(item.getImagePath());
             }
